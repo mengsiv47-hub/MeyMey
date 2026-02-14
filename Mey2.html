@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mey Mey & Meng Meng 💕</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background: radial-gradient(circle at top, #ffe6f2 0%, #ffc1e3 40%, #ff9fd2 75%, #ff85c8 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* Title */
+h1 {
+    text-align: center;
+    margin: 5vh 0;
+    font-size: clamp(26px, 6vw, 50px);
+    text-shadow: 0 0 20px white;
+    animation: glow 3s infinite ease-in-out;
+}
+
+@keyframes glow {
+    0%,100% { text-shadow: 0 0 15px #ffb6c1; }
+    50% { text-shadow: 0 0 35px white; }
+}
+
+/* Main scattered layout */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Photos */
+.photo-frame {
+    width: clamp(150px, 25vw, 240px);
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 6px solid #ff4da6;
+    box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    transition: 0.4s ease;
+}
+
+.photo-frame:hover {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Playful rotations */
+.rotate1 { transform: rotate(-6deg); }
+.rotate2 { transform: rotate(6deg); }
+.rotate3 { transform: rotate(3deg); }
+
+/* Letters */
+.love-note {
+    width: clamp(200px, 28vw, 320px);
+    padding: 20px;
+    background: rgba(255,105,180,0.9);
+    border-radius: 25px;
+    box-shadow: 0 0 25px #ff4da6;
+    font-size: clamp(14px, 3.5vw, 18px);
+    line-height: 1.5;
+    animation: floatNote 6s infinite ease-in-out;
+}
+
+@keyframes floatNote {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    pointer-events: none;
+    animation: floatHeart 4s linear forwards;
+    filter: drop-shadow(0 0 8px white);
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.6); opacity: 0; }
+}
+
+/* Floating cats */
+.cat {
+    position: fixed;
+    font-size: clamp(20px, 6vw, 40px);
+    pointer-events: none;
+    animation: floatCat linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatCat {
+    0% { transform: translateY(110vh); }
+    100% { transform: translateY(-20vh); }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Mey Mey & Meng Meng 💖</h1>
+
+<div class="container">
+
+    <div class="photo-frame rotate1">
+        <img src="pic1.jpg">
+    </div>
+
+    <div class="love-note">
+        💌 Since 18 March 2024, you've been my Cutiee! <br><br>
+        Every moment with you makes me smile 😘<br>
+        I love you more than words can say 💖
+    </div>
+
+    <div class="photo-frame rotate2">
+        <img src="pic2.jpg">
+    </div>
+
+    <div class="love-note">
+        🌸 You’re my happiness, my heart, my everything.<br><br>
+        I can’t wait for all our dreams together 😻
+    </div>
+
+    <div class="photo-frame rotate3">
+        <img src="pic3.jpg">
+    </div>
+
+</div>
+
+<script>
+
+/* Floating Cats */
+function createCats() {
+    for (let i = 0; i < 6; i++) {
+        const cat = document.createElement("div");
+        cat.classList.add("cat");
+        cat.innerHTML = "🐱";
+        cat.style.left = Math.random() * 100 + "vw";
+        cat.style.animationDuration = (10 + Math.random() * 5) + "s";
+        document.body.appendChild(cat);
+    }
+}
+
+/* Floating Hearts */
+function createHeart(x = null, y = null) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = (x ?? Math.random() * window.innerWidth) + "px";
+    heart.style.top = (y ?? Math.random() * window.innerHeight) + "px";
+    heart.style.fontSize = (25 + Math.random() * 25) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+}
+
+setInterval(() => createHeart(), 1500);
+createCats();
+
+document.addEventListener("click", (e) => {
+    createHeart(e.pageX, e.pageY);
+});
+
+document.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    createHeart(touch.pageX, touch.pageY);
+});
+
+</script>
+
+</body>
+</html>
+
